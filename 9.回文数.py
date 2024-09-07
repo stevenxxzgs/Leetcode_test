@@ -68,16 +68,20 @@ from typing import *
 # @lc code=start
 class Solution:
     def isPalindrome(self, x: int) -> bool:
+        if x > 0 :
+            ori = x
+            rev = 0
+            while x > 0 :
+                rev = rev * 10 + x % 10
+                x //= 10         
+            if rev == ori:
+                return True
+            else:
+                return False
         if x < 0 :
             return False
         if x == 0 :
             return True
-        if x > 0 :
-            s = str(x)
-            s_rev = s[::-1]
-            if s == s_rev:
-                return True
-            else:
-                return False
+        
 # @lc code=end
 
