@@ -48,34 +48,25 @@
 #
 
 # @lc code=start
+
 class Solution:
-    def isPalindrome(self, x):
-        import math
-        if x < 0 : return False
-        rev, result, result_rev = 0, 0, 0
-        count = 1
-        if int(math.log10(abs(x)))%2 != 0:
-            for i in range(int(math.log10(abs(x)))//2 + 1):
-                if x % 10 == 0:
-                    rev = rev + 10**count
-                    count += 1
-                else:
-                    rev = rev * 10 + x % 10
-                result_rev = result_rev + x % 10
-                x //= 10
-            while x > 0:
-                result = result + x % 10
-                x //= 10
-        else:
-            return False
-        return True if(result == result_rev) else False
     def countSymmetricIntegers(self, low: int, high: int) -> int:
-        result = []
-        for i in range(low, high+1):
-            if self.isPalindrome(i):
-                result.append(i)
-        print(result)
-        return len(result)
+        result = 0
+        import math
+        for x in range(low, high+1):
+            a, b = 0, 0
+            n = int(math.log10(abs(x))) + 1
+            # 按位与，查看最低位是否为1
+            if n & 1:
+                continue
+            n = n >> 1
+            for i in range(n):
+                a += (x // 10**(n)) % 10
+                b += (x % 10**(n)) % 10
+                x //= 10
+            if a == b :
+                result += 1
+        return result
 
 # @lc code=end
 
