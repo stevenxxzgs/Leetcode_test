@@ -48,20 +48,17 @@
 # @lc code=start
 class Solution:
     def findSameChar(self, str1: str, str2: str):
-        s = ''
-        # len : str2 > str1
-        for i in range(len(str1)):
-            if str1[i] == str2[i]:
-                s += str1[i]
-            if str1[i] != str2[i]:
-                break
-        return s
+        n = min(len(str1), len(str2))
+        i = 0
+        while i < n and str1[i] == str2[i]:
+            i += 1
+        return str1[:i]
     def longestCommonPrefix(self, strs: list[str]) -> str:
         strs.sort(key=len)
         n = len(strs)
         s = strs[0]
-        for i in range(n-1):
-            s = self.findSameChar(s,strs[i+1])
+        for i in range(1,n):
+            s = self.findSameChar(s,strs[i])
         return s
 # @lc code=end
 
