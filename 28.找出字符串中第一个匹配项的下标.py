@@ -49,5 +49,19 @@
 # @lc code=start
 class Solution:
     def strStr(self, haystack: str, needle: str) -> int:
+        n_need = len(needle)
+        n_haystack = len(haystack)
+        new_string = needle + '#' + haystack
+        pi = [0] * len(new_string)
+        for i in range(1, len(new_string)):
+            len1 = pi[i-1]
+            while(len1 != 0 and new_string[i] != new_string[len1]):
+                len1 = pi[len1-1]
+            if(new_string[i] == new_string[len1]):
+                pi[i] = len1 + 1
+                if pi[i] == n_need:
+                    return i - n_need*2
+        return -1
+
 # @lc code=end
 
