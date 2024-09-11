@@ -78,12 +78,15 @@
 # @lc code=start
 class Solution:
     def removeElement(self, nums: list[int], val: int) -> int:
-        n = len(nums)-1
+        n = len(nums)
+        i = 0
         j = 0 
-        for i in range(len(nums)):
+        while i < n:
             if nums[i] != val:
                 nums[j] = nums[i]
                 j += 1
+            i += 1
         return j
+        
 # @lc code=end
 
